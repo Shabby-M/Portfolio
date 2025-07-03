@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>M Yasir - Portfolio</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+        color: #e0e0e0;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* Header */
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(20, 20, 20, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 0;
+        transition: all 0.3s ease;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #00d4ff;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: #e0e0e0;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        position: relative;
+      }
+
+      .nav-links a:hover {
+        color: #00d4ff;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #00d4ff;
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* Banner Section */
+      .banner {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .banner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%2300d4ff" opacity="0.1"/></svg>');
+        animation: float 20s infinite linear;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+        }
+      }
+
+      .banner-content {
+        z-index: 2;
+        position: relative;
+      }
+
+      .banner h1 {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #00d4ff, #0099cc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 20px #00d4ff;
+        }
+        to {
+          text-shadow: 0 0 30px #00d4ff, 0 0 40px #00d4ff;
+        }
+      }
+
+      .banner p {
+        font-size: 1.2rem;
+        color: #b0b0b0;
+        margin-bottom: 2rem;
+      }
+
+      .cta-button {
+        background: linear-gradient(135deg, #00d4ff, #0099cc);
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+      }
+
+      /* Section Styles */
+      .section {
+        padding: 5rem 0;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+
+      .section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        text-align: center;
+        color: #00d4ff;
+      }
+
+      /* Skills Section */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .skill-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 2rem;
+        border-radius: 15px;
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .skill-card:hover {
+        transform: translateY(-5px);
+        border-color: #00d4ff;
+        box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+      }
+
+      .skill-card h3 {
+        color: #00d4ff;
+        margin-bottom: 1rem;
+      }
+
+      .skill-bar {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        height: 10px;
+        margin: 1rem 0;
+        overflow: hidden;
+      }
+
+      .skill-progress {
+        height: 100%;
+        background: linear-gradient(90deg, #00d4ff, #0099cc);
+        border-radius: 10px;
+        transition: width 1s ease;
+      }
+
+      /* Work Experience */
+      .timeline {
+        position: relative;
+        margin: 2rem 0;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, #00d4ff, #0099cc);
+        transform: translateX(-50%);
+      }
+
+      .timeline-item {
+        position: relative;
+        margin-bottom: 3rem;
+        width: 45%;
+      }
+
+      .timeline-item:nth-child(odd) {
+        left: 0;
+      }
+
+      .timeline-item:nth-child(even) {
+        left: 55%;
+      }
+
+      .timeline-content {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 2rem;
+        border-radius: 15px;
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        backdrop-filter: blur(10px);
+      }
+
+      .timeline-content h3 {
+        color: #00d4ff;
+        margin-bottom: 0.5rem;
+      }
+
+      .timeline-content .company {
+        color: #00d4ff;
+        font-weight: bold;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .timeline-content .date {
+        color: #888;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      /* Education & Certification */
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 2rem;
+        border-radius: 15px;
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        border-color: #00d4ff;
+        box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+      }
+
+      .card h3 {
+        color: #00d4ff;
+        margin-bottom: 1rem;
+      }
+
+      .card .institution {
+        color: #888;
+        font-size: 0.9rem;
+      }
+
+      /* Project Cards */
+      .project-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
+
+      .tech-tag {
+        background: rgba(0, 212, 255, 0.2);
+        color: #00d4ff;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        border: 1px solid rgba(0, 212, 255, 0.3);
+      }
+
+      .project-link {
+        color: #00d4ff;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        border: 2px solid #00d4ff;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+      }
+
+      .project-link:hover {
+        background: #00d4ff;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+      }
+
+      /* Let's Connect */
+      .connect {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        text-align: center;
+        padding: 5rem 0;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .social-link {
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #00d4ff;
+        text-decoration: none;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+        border: 2px solid rgba(0, 212, 255, 0.2);
+      }
+
+      .social-link:hover {
+        background: #00d4ff;
+        color: white;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .banner h1 {
+          font-size: 2.5rem;
+        }
+
+        .timeline::before {
+          left: 20px;
+        }
+
+        .timeline-item {
+          width: calc(100% - 60px);
+          left: 60px !important;
+        }
+
+        .social-links {
+          flex-wrap: wrap;
+        }
+      }
+
+      /* Animations */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .typing {
+        overflow: hidden;
+        border-right: 3px solid #00d4ff;
+        white-space: nowrap;
+        animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: #00d4ff;
+        }
+      }
+
+      .banner-summary {
+        color: #b0eaff;
+        margin: 0 auto 1.5rem auto;
+        font-size: 1.15rem;
+        max-width: 600px;
+        text-align: center;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <nav>
+        <a href="#" class="logo">M Yasir</a>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#certifications">Certifications</a></li>
+          <li><a href="#connect">Connect</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Banner Section -->
+    <section id="home" class="banner">
+      <div class="banner-content">
+        <h1>M Yasir</h1>
+        <p class="typing">
+          Senior Cloud Data Engineer | ETL, Streaming & ML Architect
+        </p>
+        <p class="banner-summary">
+          Architecting scalable cloud-native data platforms and real-time
+          pipelines. Expert in Kafka, Spark, Airflow, dbt, and
+          Snowflake—bridging engineering and analytics for secure, automated,
+          and resilient solutions.
+        </p>
+        <a href="#connect" class="cta-button">Let's Connect</a>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+      <h2 class="fade-in">Featured Projects</h2>
+      <div class="card-grid">
+        <div class="card fade-in project-card">
+          <h3>Real-Time Data ETL Pipeline</h3>
+          <p>
+            Developed an end-to-end ETL pipeline using Apache Airflow, Spark,
+            PostgreSQL, and Docker to ingest, transform, and store synthetic
+            real-time user data. Includes CI/CD integration and monitoring.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">Airflow</span>
+            <span class="tech-tag">Spark</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">CI/CD</span>
+            <span class="tech-tag">Python</span>
+          </div>
+          <a
+            href="https://github.com/MuhummadYasir/realtime-data-etl-pipeline"
+            class="project-link"
+            target="_blank"
+            >View on GitHub →</a
+          >
+        </div>
+
+        <div class="card fade-in project-card">
+          <h3>Lakehouse Data Pipeline</h3>
+          <p>
+            Implemented a modern Lakehouse architecture using Apache Spark and
+            Delta Lake with Bronze, Silver, and Gold layers for batch processing
+            and scalable analytics.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">Apache Spark</span>
+            <span class="tech-tag">Delta Lake</span>
+            <span class="tech-tag">Lakehouse</span>
+            <span class="tech-tag">Data Engineering</span>
+            <span class="tech-tag">Python</span>
+          </div>
+          <a
+            href="https://github.com/MuhummadYasir/lakehouse-pipeline-delta-spark"
+            class="project-link"
+            target="_blank"
+            >View on GitHub →</a
+          >
+        </div>
+
+        <div class="card fade-in project-card">
+          <h3>CSV ETL Pipeline with Airflow</h3>
+          <p>
+            Built a batch ETL pipeline using Apache Airflow and PostgreSQL to
+            ingest and transform CSV data in a Dockerized environment. Includes
+            DAG scheduling and database integration.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">Apache Airflow</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">CSV</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">Python</span>
+          </div>
+          <a
+            href="https://github.com/MuhummadYasir/csv-etl-pipeline-airflow"
+            class="project-link"
+            target="_blank"
+            >View on GitHub →</a
+          >
+        </div>
+
+        <div class="card fade-in project-card">
+          <h3>Music Streaming ETL Pipeline</h3>
+          <p>
+            Developed an ETL pipeline using Apache Airflow to extract, stage,
+            and load song and log data from S3 into Amazon Redshift. Built star
+            schema tables and implemented data quality checks.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">Apache Airflow</span>
+            <span class="tech-tag">Amazon Redshift</span>
+            <span class="tech-tag">AWS S3</span>
+            <span class="tech-tag">ETL</span>
+            <span class="tech-tag">Python</span>
+          </div>
+          <a
+            href="https://github.com/MuhummadYasir/airflow-music-etl-pipeline"
+            class="project-link"
+            target="_blank"
+            >View on GitHub →</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+      <h2 class="fade-in">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card fade-in">
+          <h3>Cloud Platforms & Services</h3>
+          <p>
+            <strong>Azure:</strong> Synapse, Data Lake, Data Factory,
+            Databricks, Cosmos DB, Event Hubs, AKS
+          </p>
+          <p>
+            <strong>AWS:</strong> Redshift, Glue, Lambda, S3, EC2, EMR,
+            SageMaker, DynamoDB, Aurora, CloudFormation
+          </p>
+          <p>
+            <strong>GCP:</strong> BigQuery, Dataflow, Vertex AI, Cloud Composer,
+            Cloud Functions, Firestore
+          </p>
+          <p>
+            <strong>Others:</strong> Palantir Foundry, Snowflake, IBM Cloud Pak
+            for Data
+          </p>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="95"></div>
+          </div>
+        </div>
+        <div class="skill-card fade-in">
+          <h3>Data Engineering & Streaming</h3>
+          <p>
+            <strong>Streaming:</strong> Apache Kafka (Streams, Connect), Apache
+            Flink, Apache Beam, Apache Storm, Kinesis
+          </p>
+          <p>
+            <strong>Big Data:</strong> Apache Spark (Structured Streaming,
+            PySpark, Spark SQL), Hadoop, Hive, Pig
+          </p>
+          <p>
+            <strong>Storage:</strong> Delta Lake, Iceberg, Hudi, Presto, Trino
+          </p>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="92"></div>
+          </div>
+        </div>
+        <div class="skill-card fade-in">
+          <h3>ETL/ELT & Data Orchestration</h3>
+          <p>
+            Apache Airflow, dbt, Talend, Apache NiFi, Informatica, SSIS,
+            Alteryx, Azure Data Factory, Matillion, StreamSets, SAP Data
+            Services
+          </p>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="90"></div>
+          </div>
+        </div>
+        <div class="skill-card fade-in">
+          <h3>Programming & Automation</h3>
+          <p>
+            <strong>Languages:</strong> Python, SQL, Scala, Java, R, Go, Rust,
+            C++, TypeScript
+          </p>
+          <p>
+            <strong>Scripting:</strong> Shell Scripting (Bash), .NET, PowerShell
+          </p>
+          <p><strong>Data Formats:</strong> YAML, JSON, XML, Regex</p>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="88"></div>
+          </div>
+        </div>
+        <div class="skill-card fade-in">
+          <h3>Machine Learning & MLOps</h3>
+          <p>
+            <strong>Frameworks:</strong> MLflow, TensorFlow, PyTorch,
+            Scikit-learn, XGBoost, Keras, ONNX
+          </p>
+          <p>
+            <strong>Techniques:</strong> CNNs, RNNs, LSTMs, Transfer Learning,
+            Deep Learning, Prompt Engineering, RAG
+          </p>
+          <p>
+            <strong>Operations:</strong> AutoML, Hyperparameter Tuning, A/B
+            Testing, Drift Monitoring
+          </p>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="85"></div>
+          </div>
+        </div>
+        <div class="skill-card fade-in">
+          <h3>Data Modeling & Warehousing</h3>
+          <p>
+            Dimensional Modeling, Star/Snowflake Schema, Data Vault 2.0, Kimball
+            Methodology, Third Normal Form (3NF), Fact-Dimension Modeling,
+            OLAP/OLTP Systems, Columnar Storage
+          </p>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="93"></div>
+          </div>
+        </div>
+        <div class="skill-card fade-in">
+          <h3>Business Intelligence & Visualization</h3>
+          <p>
+            <strong>BI Tools:</strong> Tableau, Power BI, Looker, Qlik, Amazon
+            QuickSight, Superset, Grafana
+          </p>
+          <p>
+            <strong>Programming:</strong> D3.js, Plotly, Seaborn, Matplotlib,
+            Dash, Jupyter Notebooks, Excel Power Query
+          </p>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="87"></div>
+          </div>
+        </div>
+        <div class="skill-card fade-in">
+          <h3>DevOps & DataOps</h3>
+          <p><strong>Containers:</strong> Docker, Kubernetes, Helm</p>
+          <p>
+            <strong>CI/CD:</strong> Jenkins, GitHub Actions, Azure DevOps,
+            GitLab CI, CircleCI, ArgoCD
+          </p>
+          <p>
+            <strong>Infrastructure:</strong> Terraform, CloudFormation, Ansible,
+            Serverless Architectures
+          </p>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="86"></div>
+          </div>
+        </div>
+        <div class="skill-card fade-in">
+          <h3>Data Governance & Security</h3>
+          <p>
+            <strong>Tools:</strong> Monte Carlo, Collibra, Alation, Informatica
+            Axon, Apache Atlas
+          </p>
+          <p><strong>Compliance:</strong> GDPR, HIPAA, SOC2, ISO 27001</p>
+          <p>
+            <strong>Security:</strong> RBAC, ABAC, IAM, OAuth2, HashiCorp Vault,
+            SSO, Encryption
+          </p>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="84"></div>
+          </div>
+        </div>
+        <div class="skill-card fade-in">
+          <h3>Databases & APIs</h3>
+          <p><strong>SQL:</strong> PostgreSQL, MySQL, MS SQL Server, Oracle</p>
+          <p>
+            <strong>NoSQL:</strong> MongoDB, Cassandra, Redis, Neo4j,
+            Elasticsearch, Couchbase, TimescaleDB
+          </p>
+          <p>
+            <strong>APIs:</strong> RESTful APIs, GraphQL, gRPC, SOAP,
+            Microservices, HL7/FHIR
+          </p>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="91"></div>
+          </div>
+        </div>
+        <div class="skill-card fade-in">
+          <h3>Observability & Monitoring</h3>
+          <p>
+            Prometheus, Datadog, New Relic, ELK Stack, Data Lineage, Data
+            Catalogs, Anomaly Detection, Audit Trails
+          </p>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="82"></div>
+          </div>
+        </div>
+        <div class="skill-card fade-in">
+          <h3>Industry Knowledge</h3>
+          <p>
+            Healthcare Data, Financial Analytics, Marketing Attribution,
+            E-commerce Analytics
+          </p>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="89"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Work Experience -->
+    <section id="experience" class="section">
+      <h2 class="fade-in">Work Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item fade-in">
+          <div class="timeline-content">
+            <h3>Lead Data Engineer</h3>
+            <div class="company">Narrator</div>
+            <div class="date">May 2022 - April 2025</div>
+            <p>
+              • Designed AI-powered streaming architecture using Apache Kafka,
+              Apache Flink, and Palantir Foundry for real-time analytics
+            </p>
+            <p>
+              • Built automated ELT pipelines with dbt and Airflow to support
+              dynamic data transformation across multiple business units
+            </p>
+            <p>
+              • Implemented data governance framework with Monte Carlo and
+              Collibra, enforcing GDPR/HIPAA/SOC2 compliance
+            </p>
+            <p>
+              • Led cross-functional teams to transition to a cloud-native
+              ecosystem using Azure Synapse, AWS Redshift, and GCP BigQuery
+            </p>
+            <p>
+              • Deployed ML pipelines with Databricks and MLflow, integrating
+              TensorFlow models into production
+            </p>
+            <p>
+              • Achieved 45% improvement in query latency and storage efficiency
+              through advanced optimization on Snowflake and Delta Lake
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item fade-in">
+          <div class="timeline-content">
+            <h3>Senior Data Engineer | ETL & Solution Architect</h3>
+            <div class="company">Census</div>
+            <div class="date">August 2018 - April 2022</div>
+            <p>
+              • Designed and led the architecture of scalable ETL and ELT
+              pipelines supporting high-throughput data ingestion across
+              marketing, product, and finance domains using Airflow, dbt, and
+              Fivetran
+            </p>
+            <p>
+              • Architected end-to-end data solutions across Snowflake and
+              Redshift warehouses, integrating with tools such as Looker,
+              Tableau, and Census's reverse ETL platform to activate data into
+              operational systems
+            </p>
+            <p>
+              • Collaborated with cross-functional teams to translate business
+              goals into technical data strategies, enabling self-serve
+              analytics and reporting frameworks using dimensional modeling and
+              data marts
+            </p>
+            <p>
+              • Oversaw migration from legacy ETL stack to modern cloud-native
+              data lakehouse using Apache Spark and Delta Lake on AWS S3,
+              improving query performance and cost efficiency
+            </p>
+            <p>
+              • Established data quality frameworks using Great Expectations and
+              Monte Carlo, reducing downstream breakages by 40% and improving
+              incident response through lineage tracking
+            </p>
+            <p>
+              • Mentored junior engineers and led technical design reviews,
+              fostering a culture of documentation, scalability, and test-driven
+              data development
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item fade-in">
+          <div class="timeline-content">
+            <h3>Data & Cloud Engineer</h3>
+            <div class="company">Monte Carlo</div>
+            <div class="date">September 2015 - July 2018</div>
+            <p>
+              • Developed and managed scalable, cloud-native data pipelines on
+              AWS and GCP using Airflow, Spark, and BigQuery
+            </p>
+            <p>
+              • Implemented data observability, lineage, and anomaly detection
+              to ensure trust and reliability across datasets
+            </p>
+            <p>
+              • Integrated Monte Carlo with Snowflake, dbt, and Looker to
+              automate incident alerts and metadata tracking
+            </p>
+            <p>
+              • Partnered with product and analytics teams to build
+              fault-tolerant data services and improve SLA compliance
+            </p>
+            <p>
+              • Led efforts to unify data lake and warehouse strategies using
+              Delta Lake and Apache Iceberg for hybrid storage
+            </p>
+            <p>
+              • Automated infrastructure provisioning using Terraform and
+              Kubernetes to support high-availability data services
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="section">
+      <h2 class="fade-in">Education</h2>
+      <div class="card-grid">
+        <div class="card fade-in">
+          <h3>B.S. in Computer Science</h3>
+          <p class="institution">New Jersey City University</p>
+          <p>
+            Strong foundation in computer science fundamentals, algorithms, data
+            structures, and software engineering principles. Specialized
+            coursework in database systems, distributed computing, and data
+            analysis.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications" class="section">
+      <h2 class="fade-in">Certifications</h2>
+      <div class="card-grid">
+        <div class="card fade-in">
+          <h3>Microsoft Certified: Azure Data Engineer Associate</h3>
+          <p class="institution">Microsoft</p>
+          <p>
+            Expertise in designing and implementing data solutions on Microsoft
+            Azure, including data storage, data processing, and data security.
+          </p>
+        </div>
+        <div class="card fade-in">
+          <h3>Databricks Certified Data Engineer Professional</h3>
+          <p class="institution">Databricks</p>
+          <p>
+            Advanced certification demonstrating proficiency in building and
+            optimizing data pipelines using the Databricks Lakehouse Platform.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Let's Connect -->
+    <section id="connect" class="connect">
+      <div class="section">
+        <h2 class="fade-in">Let's Connect</h2>
+        <p class="fade-in">
+          Ready to work together? Let's create something amazing!
+        </p>
+        <div class="social-links">
+          <a
+            href="mailto:stackmotive84@gmail.com"
+            class="social-link fade-in"
+            title="Email"
+            >📧</a
+          >
+          <a href="tel:2035147587" class="social-link fade-in" title="Phone"
+            >📱</a
+          >
+          <a href="#" class="social-link fade-in" title="Location">📍</a>
+        </div>
+        <div style="margin-top: 2rem; color: #00d4ff; font-size: 1.1rem">
+          <div>Email: stackmotive84@gmail.com</div>
+          <div>Phone: 203-514-7587</div>
+          <div>Location: Cleveland, OH 44114</div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Fade in animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".fade-in").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Skill bar animation
+      const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const progressBar = entry.target.querySelector(".skill-progress");
+            if (progressBar) {
+              const width = progressBar.getAttribute("data-width");
+              setTimeout(() => {
+                progressBar.style.width = width + "%";
+              }, 300);
+            }
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".skill-card").forEach((card) => {
+        skillObserver.observe(card);
+      });
+
+      // Header background change on scroll
+      window.addEventListener("scroll", () => {
+        const header = document.querySelector("header");
+        if (window.scrollY > 100) {
+          header.style.background = "rgba(20, 20, 20, 0.98)";
+        } else {
+          header.style.background = "rgba(20, 20, 20, 0.95)";
+        }
+      });
+
+      // Typing effect
+      const typingElement = document.querySelector(".typing");
+      const text = "Senior Cloud Data Engineer | ETL, Streaming & ML Architect";
+      let index = 0;
+
+      function typeText() {
+        if (index < text.length) {
+          typingElement.textContent += text.charAt(index);
+          index++;
+          setTimeout(typeText, 100);
+        }
+      }
+
+      // Start typing effect after page load
+      window.addEventListener("load", () => {
+        typingElement.textContent = "";
+        setTimeout(typeText, 1000);
+      });
+
+      // Particle effect for banner
+      function createParticle() {
+        const particle = document.createElement("div");
+        particle.style.position = "absolute";
+        particle.style.width = "4px";
+        particle.style.height = "4px";
+        particle.style.background = "#00d4ff";
+        particle.style.borderRadius = "50%";
+        particle.style.opacity = "0.5";
+        particle.style.left = Math.random() * 100 + "%";
+        particle.style.top = "100%";
+        particle.style.pointerEvents = "none";
+
+        document.querySelector(".banner").appendChild(particle);
+
+        let position = 100;
+        const animation = setInterval(() => {
+          position -= 0.5;
+          particle.style.top = position + "%";
+
+          if (position < -10) {
+            clearInterval(animation);
+            particle.remove();
+          }
+        }, 16);
+      }
+
+      // Create particles periodically
+      setInterval(createParticle, 2000);
+
+      // Mobile menu toggle (for future enhancement)
+      const createMobileMenu = () => {
+        const nav = document.querySelector("nav");
+        const menuToggle = document.createElement("button");
+        menuToggle.innerHTML = "☰";
+        menuToggle.className = "mobile-menu-toggle";
+        menuToggle.style.display = "none";
+        menuToggle.style.background = "none";
+        menuToggle.style.border = "none";
+        menuToggle.style.color = "#00d4ff";
+        menuToggle.style.fontSize = "1.5rem";
+        menuToggle.style.cursor = "pointer";
+
+        nav.appendChild(menuToggle);
+
+        // Show/hide mobile menu on smaller screens
+        const checkScreenSize = () => {
+          if (window.innerWidth <= 768) {
+            menuToggle.style.display = "block";
+          } else {
+            menuToggle.style.display = "none";
+          }
+        };
+
+        window.addEventListener("resize", checkScreenSize);
+        checkScreenSize();
+      };
+
+      createMobileMenu();
+    </script>
+  </body>
+</html>
